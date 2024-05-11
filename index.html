@@ -293,6 +293,11 @@ $('#nextPage').click(function() {
                 success: function () {
                     $('#modalUsuario').modal('hide');
                     carregarUsuarios();
+
+                    $('#nome').val('');
+                $('#telefone').val('');
+                $('#email').val('');
+
                 }
             });
         });
