@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{17411DDB-E57A-468A-AAB4-AEAE33877F77}|Teste Emccamp\\Teste Emccamp.csproj|c:\\users\\juliana.santos\\source\\repos\\teste emccamp\\teste emccamp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17411DDB-E57A-468A-AAB4-AEAE33877F77}|Teste Emccamp\\Teste Emccamp.csproj|solutionrelative:teste emccamp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17411DDB-E57A-468A-AAB4-AEAE33877F77}|Teste Emccamp\\Teste Emccamp.csproj|c:\\users\\juliana.santos\\source\\repos\\teste emccamp\\teste emccamp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17411DDB-E57A-468A-AAB4-AEAE33877F77}|Teste Emccamp\\Teste Emccamp.csproj|solutionrelative:teste emccamp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17411DDB-E57A-468A-AAB4-AEAE33877F77}|Teste Emccamp\\Teste Emccamp.csproj|c:\\users\\juliana.santos\\source\\repos\\teste emccamp\\teste emccamp\\pages\\usuarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{17411DDB-E57A-468A-AAB4-AEAE33877F77}|Teste Emccamp\\Teste Emccamp.csproj|solutionrelative:teste emccamp\\pages\\usuarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17411DDB-E57A-468A-AAB4-AEAE33877F77}|Teste Emccamp\\Teste Emccamp.csproj|c:\\users\\juliana.santos\\source\\repos\\teste emccamp\\teste emccamp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{17411DDB-E57A-468A-AAB4-AEAE33877F77}|Teste Emccamp\\Teste Emccamp.csproj|solutionrelative:teste emccamp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\Teste Emccamp\\Program.cs",
+              "RelativeDocumentMoniker": "Teste Emccamp\\Program.cs",
+              "ToolTip": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\Teste Emccamp\\Program.cs",
+              "RelativeToolTip": "Teste Emccamp\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T20:38:36.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Usuarios.cshtml",
+              "DocumentMoniker": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\Teste Emccamp\\Pages\\Usuarios.cshtml",
+              "RelativeDocumentMoniker": "Teste Emccamp\\Pages\\Usuarios.cshtml",
+              "ToolTip": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\Teste Emccamp\\Pages\\Usuarios.cshtml",
+              "RelativeToolTip": "Teste Emccamp\\Pages\\Usuarios.cshtml",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAAE4AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-10T02:16:07.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\Teste Emccamp\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Teste Emccamp\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\Teste Emccamp\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Teste Emccamp\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-10T03:23:33.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\Teste Emccamp\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Teste Emccamp\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\juliana.santos\\source\\repos\\Teste Emccamp\\Teste Emccamp\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Teste Emccamp\\Controllers\\UserController.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAAYwEMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T00:46:22.96Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

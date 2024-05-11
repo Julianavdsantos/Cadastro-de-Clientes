@@ -1,0 +1,6 @@
+@Teste_Emccamp_HostAddress = http://localhost:5267
+
+GET {{Teste_Emccamp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
