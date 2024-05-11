@@ -24,6 +24,6 @@ Este projeto é uma aplicação web para gerenciar o cadastro de usuários, util
 1. Clone este repositório em sua máquina local.
 2. Certifique-se de ter as ferramentas necessárias instaladas.
 3. Configure o banco de dados e a conexão com o Entity Framework Core.
-4. O front será executado no arquvo index.html.
+4. O front será executado no arquvo index.html. http://localhost:5267
 
 
