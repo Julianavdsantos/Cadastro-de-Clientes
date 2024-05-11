@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -36,79 +36,40 @@ namespace Teste_Emccamp.Controllers
 
         //paginacao
         [HttpGet("skip/{Skip:int}/take/{Take:int}")]
-public async Task<IActionResult> GetAsync(
+        public async Task<IActionResult> GetAsync(
     [FromServices] UserContext context,
     [FromRoute] int skip = 0,
     [FromRoute] int take = 2)
-{
-    try
-    {
-        var total = await context.Usuarios.CountAsync();
-        var totalPages = (int)Math.Ceiling((double)total / take);
-        var currentPage = (int)Math.Floor((double)skip / take) + 1;
-
-        var todos = await context
-            .Usuarios
-            .AsNoTracking()
-            .Skip(skip)
-            .Take(take)
-            .ToListAsync();
-
-        return Ok(new
         {
-            total,
-            currentPage,
-            totalPages,
-            skip,
-            take,
-            data = todos
-        });
-    }
-    catch (Exception ex)
-    {
-        return StatusCode(500, "Ocorreu um erro ao processar a solicitação.");
-    }
-}
+            try
+            {
+                var total = await context.Usuarios.CountAsync();
+                var totalPages = (int)Math.Ceiling((double)total / take);
+                var currentPage = (int)Math.Floor((double)skip / take) + 1;
 
+                var todos = await context
+                    .Usuarios
+                    .AsNoTracking()
+                    .Skip(skip)
+                    .Take(take)
+                    .ToListAsync();
 
+                return Ok(new
+                {
+                    total,
+                    currentPage,
+                    totalPages,
+                    skip,
+                    take,
+                    data = todos
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Ocorreu um erro ao processar a solicitação.");
+            }
+        }
 
-
-
-
-
-
-
-        //    [HttpGet("pagination/info")] // Rota para obter informações de paginação
-        //    public async Task<IActionResult> GetPaginationInfo(
-        //[FromServices] UserContext context,
-        //[FromQuery] int pageSize = 6,
-        //[FromQuery] int currentPage = 1) // Adicionando currentPage como parâmetro
-        //    {
-        //        try
-        //        {
-        //            var total = await context.Usuarios.CountAsync();
-        //            var totalPages = (int)Math.Ceiling((double)total / pageSize);
-
-        //            // Validando a página atual para garantir que esteja dentro dos limites
-        //            currentPage = Math.Max(1, Math.Min(currentPage, totalPages));
-
-        //            // Calculando o deslocamento dos registros com base na página atual
-        //            var offset = (currentPage - 1) * pageSize;
-
-        //            return Ok(new
-        //            {
-        //                currentPage = currentPage,
-        //                totalPages = totalPages,
-        //                pageSize = pageSize,
-        //                totalRecords = total,
-        //                offset = offset // Adicionando o offset para uso posterior na obtenção dos registros
-        //            });
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return StatusCode(500, "Ocorreu um erro ao processar a solicitação.");
-        //        }
-        //    }
 
 
 
@@ -141,6 +102,26 @@ public async Task<IActionResult> GetAsync(
 
             return CreatedAtAction(nameof(GetUsuario), new { id = usuario.ID }, usuario);
         }
+
+        //pesquisar
+
+        [HttpGet("pesquisar")]
+        public async Task<ActionResult<IEnumerable<Usuario>>> SearchUsuarios(string termo)
+        {
+            termo = termo.ToLower(); // Convertendo o termo de pesquisa para minúsculas
+
+            var usuarios = await _dbContext.Usuarios
+                                    .Where(u => u.Nome.ToLower().Contains(termo) ||
+                                                u.Telefone.ToLower().Contains(termo) ||
+                                                u.Email.ToLower().Contains(termo))
+                                    .ToListAsync();
+
+            return usuarios;
+        }
+
+
+
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(int id, [FromBody] Usuario usuario)
