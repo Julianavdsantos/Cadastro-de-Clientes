@@ -5,20 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerenciamento de Usuários</title>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+  
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
   <div class="container mt-5">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-3">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUsuario">
           Cadastrar Novo Usuário
         </button>
       </div>
+      
     </div>
-    <div class="row mt-3">
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <input type="text" class="form-control search-input" placeholder="Procurar Contato" aria-label="" aria-describedby="basic-addon1" style="border-radius: 10px; background-color: #EFF2F7;">
+      </div>
+  </div>
+    <div class="row mt-2">
       <div class="col-md-12">
         <table class="table  table-striped " style=" margin-top: 25px;">
           <thead class="thead-dark">
@@ -71,6 +81,14 @@
     </div>
   </div>
   <style>
+
+.search-input {
+        transition: background-color 0.3s; /* Adiciona uma transição suave */
+    }
+
+    .search-input:hover {
+        background-color: #D4D4D4; /* Altera a cor de fundo ao passar o mouse */
+    }
 
   table{
     border: 1px solid #ccc; 
@@ -178,10 +196,15 @@
               <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" class="form-control" id="nome" required>
+                
               </div>
               <div class="form-group">
                 <label for="telefone">Telefone:</label>
-                <input type="tel" class="form-control" id="telefone" required>
+              
+                <input type="text" class="form-control item" id="telefone" >
+                
+                
+                
               </div>
               <div class="form-group">
                 <label for="email">Email:</label>
@@ -201,6 +224,10 @@
     
     var skip = 0;
     var take = 6; // Exibir até 6 registros por página
+
+//pesquisar
+
+
 
     function carregarUsuarios() {
     $.ajax({
@@ -274,6 +301,78 @@ $('#nextPage').click(function() {
     }
 
     $(document).ready(function () {
+      $('#telefone').mask('(99) 9999-9999'); 
+
+//pesquisa
+debugger
+        $('.search-input').on('input', function() {
+        var termo = $(this).val();
+
+        if (termo.trim() !== '') {
+            // Se o termo de pesquisa não estiver vazio, enviar solicitação de pesquisa
+            $.ajax({
+              url: `${applicationUrl}/api/User/pesquisar`,
+                method: 'GET',
+                data: { termo: termo },
+                success: function(usuarios) {
+                    exibirResultadoPesquisa(usuarios);
+                },
+                error: function(error) {
+                    console.error('Erro na pesquisa:', error);
+                }
+            });
+        } else {
+            // Se o termo de pesquisa estiver vazio, carregar usuários normais
+            carregarUsuarios();
+        }
+    });
+
+// Função para exibir os resultados da pesquisa na tabela
+function exibirResultadoPesquisa(usuarios) {
+    var tabelaUsuarios = $('#tabelaUsuarios');
+    tabelaUsuarios.empty(); // Limpar a tabela antes de adicionar novos resultados
+
+    if (usuarios.length === 0) {
+        tabelaUsuarios.append('<tr><td colspan="5">Nenhum resultado encontrado</td></tr>');
+    } else {
+        $.each(usuarios, function(index, usuario) {
+            tabelaUsuarios.append('<tr><td>' + usuario.id + '</td><td>' + usuario.nome + '</td><td>' + usuario.telefone + '</td><td>' + usuario.email + '</td><td><button class="btn btn-sm btn-primary btn-editar" data-id="' + usuario.id + '">Editar</button> <button class="btn btn-sm btn-danger btn-excluir" data-id="' + usuario.id + '">Excluir</button></td></tr>');
+        });
+    }
+}
+
+// Restante do seu código JavaScript...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Carregar os usuários quando a página é carregada
         carregarUsuarios();
 
