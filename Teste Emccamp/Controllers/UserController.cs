@@ -22,6 +22,8 @@ namespace Teste_Emccamp.Controllers
         [HttpGet("AllUsers")] // Rota para obter todos os usuários
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
+            ActionResult<IEnumerable<Usuario>> respostaInicial = Ok(new { mensagem = "Carregando..." });
+
             if (_dbContext.Usuarios == null)
             {
                 return NotFound();
