@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerenciamento de Usuários</title>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-  
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
 
   <div class="container mt-5">
@@ -21,13 +24,17 @@
           Cadastrar Novo Usuário
         </button>
       </div>
-      
+
     </div>
     <div class="row">
       <div class="col-md-6 mt-3">
-        <input type="text" class="form-control search-input" placeholder="Procurar Contato" aria-label="" aria-describedby="basic-addon1" style="border-radius: 10px; background-color: #EFF2F7;">
+        <input type="text" class="form-control search-input" placeholder="Procurar Contato" aria-label=""
+          aria-describedby="basic-addon1" style="border-radius: 10px; background-color: #EFF2F7;">
       </div>
-  </div>
+    </div>
+
+
+
     <div class="row mt-2">
       <div class="col-md-12">
         <table class="table  table-striped " style=" margin-top: 25px;">
@@ -42,136 +49,156 @@
           </thead>
           <tbody id="tabelaUsuarios">
 
-          
+
           </tbody>
 
         </table>
-<!------------------------------>
-        
-       <li id="totalRegistrado"></li>
-      <div class="row mt-3" >
-        <div class="col-md-12">
+        <!------------------------------>
+
+        <li id="totalRegistrado"></li>
+        <div class="row mt-3">
+          <div class="col-md-12">
             <table class="table table-striped">
-                <!-- Tabela de usuários -->
+              <!-- Tabela de usuários -->
             </table>
-    
-            <nav aria-label="Pagination" >
-                <ul class="pagination justify-content-center" >
-                    <li class="page-item " id="previousPage">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true" >&laquo;</span>
-                        </a>
-                    </li>
-                    <li id="paginaAtual"></li>
-                    <li class="page-item" id="nextPage">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
+
+            <nav aria-label="Pagination">
+              <ul class="pagination justify-content-center">
+                <li class="page-item " id="previousPage">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li id="paginaAtual"></li>
+                <li class="page-item" id="nextPage">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
             </nav>
+          </div>
         </div>
-    </div>
-        
-           
+
+
+
+
+
       </div>
     </div>
   </div>
   <style>
-
-.search-input {
-        transition: background-color 0.3s; /* Adiciona uma transição suave */
+    .search-input {
+      transition: background-color 0.3s;
+      /* Adiciona uma transição suave */
     }
 
     .search-input:hover {
-        background-color: #D4D4D4; /* Altera a cor de fundo ao passar o mouse */
+      background-color: #D4D4D4;
+      /* Altera a cor de fundo ao passar o mouse */
     }
 
-  table{
-    border: 1px solid #ccc; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
-    border-radius: 5px; 
-    overflow: hidden; 
-
-    
-  }
-  #totalRegistrado{
-    color: #82b6ee;
-    list-style-type: none;
-    
-  }
-  
-  #paginaAtual{
-    color: #82b6ee;
-
-  }
-  
-  #previousPage,
-#nextPage {
-    background-color: #EFF2F7; 
-    border: none; /* Remover borda */
-    padding: 0; /* Remover padding */
-    
-}
-#previousPage span,
-#nextPage span {
-    margin: 0 5px; 
-    cursor: pointer;
-    
-}
-
-.page-item{
-  background-color: #0d295a; 
-}
-
-#previousPage .page-link {
-    font-size: 25px; 
-    color: black; 
-    background-color: #EFF2F7; 
-    border: none; 
-    cursor: pointer;
-}
-
-#previousPage .page-link:hover {
-    font-size: 25px; 
-    color: black; 
-    background-color: #5881c7; 
-    border: none;
-}
+    table {
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
 
 
-.page-link {
-    font-size: 25px; 
-    color: black; 
-    background-color: #EFF2F7; 
-    border: none; 
+    }
 
-}
-.pagination li {
-        margin-right: 30px; 
+    #totalRegistrado {
+      color: #0D1117;
+      list-style-type: none;
+      font-size: 12px;
+
+    }
+
+    #paginaAtual {
+      color: #0D1117;
+
+    }
+
+    #previousPage,
+    #nextPage {
+      background-color: #EFF2F7;
+      border: none;
+      /* Remover borda */
+      padding: 0;
+      /* Remover padding */
+
+    }
+
+    #previousPage span,
+    #nextPage span {
+      margin: 0 5px;
+      cursor: pointer;
+
+    }
+
+    .page-item {
+      background-color: #0d295a;
+    }
+
+    #previousPage .page-link {
+      font-size: 25px;
+      color: black;
+      background-color: #EFF2F7;
+      border: none;
+      cursor: pointer;
+    }
+
+    #previousPage .page-link:hover {
+      font-size: 25px;
+      color: black;
+      background-color: #5881c7;
+      border: none;
     }
 
 
+    .page-link {
+      font-size: 25px;
+      color: black;
+      background-color: #EFF2F7;
+      border: none;
 
-  .table tbody tr:hover {
-    background-color: #f5f5f5; 
-  }
+    }
 
-  body{
-    background-color: #eff2f7;
-  }
-  
-  .btn-editar,
-.btn-excluir {
-    margin-right: 5px;
-    margin-bottom: 5px; 
-    width: auto; 
-    max-width: 70%; 
-    display: inline-block; 
-}
+    .pagination li {
+      margin-right: 30px;
+    }
 
 
 
+    .table tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    body {
+      background-color: #eff2f7;
+    }
+
+    .btn-editar,
+    .btn-excluir {
+      margin-right: 5px;
+      margin-bottom: 5px;
+      width: auto;
+      max-width: 70%;
+      display: inline-block;
+    }
+
+    /* Estilos personalizados para o modal de alerta */
+    .swal2-popup {
+      font-size: 14px;
+    }
+
+    .swal2-title {
+      font-size: 18px;
+    }
+
+    .swal2-content {
+      font-size: 16px;
+    }
   </style>
 
 
@@ -179,242 +206,343 @@
 
   <!-- Modal de Cadastro de Usuário -->
 
-  <div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel" aria-hidden="true">
+  <div class="modal fade" id="modalUsuario" tabindex="-1"  role="dialog" aria-labelledby="modalUsuarioLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalClienteLabel">Cadastrar Novo Cliente</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="formCadastroUsuario">
-              <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" required>
-                
-              </div>
-              <div class="form-group">
-                <label for="telefone">Telefone:</label>
-              
-                <input type="text" class="form-control item" id="telefone" >
-                
-                
-                
-              </div>
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" required>
-              </div>
-              <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </form>
-          </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalClienteLabel">Cadastrar Novo Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="formCadastroUsuario">
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input type="text" class="form-control nome" id="nome" required>
+
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
+
+              <input type="text" class="form-control item telefone" id="telefone">
+
+
+
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control email" id="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </form>
         </div>
       </div>
+    </div>
   </div>
 
-  
+
+
+
+
+
+
+  <div class="modal fade" id="modalUsuarioedicao" tabindex="-1"  role="dialog" aria-labelledby="modalUsuarioLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalClienteLabel">Cadastrar Novo Cliente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="formCadastroUsuario">
+          <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control nome" id="nome" required>
+
+          </div>
+          <div class="form-group">
+            <label for="telefone">Telefone:</label>
+
+            <input type="text" class="form-control item telefone" id="telefone">
+
+
+
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control email" id="email" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <script>
     const applicationUrl = "http://localhost:5267";
-           
-    
+
+
     var skip = 0;
     var take = 6; // Exibir até 6 registros por página
 
-//pesquisar
+    function mostrarAlerta(mensagem, tipo) {
+      Swal.fire({
+        icon: tipo,
+        title: mensagem,
+        showConfirmButton: false,
+        timer: 2500
+      });
+    }
 
 
+    //pesquisar
 
     function carregarUsuarios() {
-    $.ajax({
+      $('#telefone').mask('(99) 9999-9999');
+      $('#tabelaUsuarios').html('<tr><td colspan="5">Carregando...</td></tr>');
+      $.ajax({
         url: `${applicationUrl}/api/User/skip/${skip}/take/${take}`,
         type: 'GET',
-        success: function(response) {
+        success: function (response) {
           var totalRegistros = response.total;
 
-            $('#tabelaUsuarios').empty();
-            $.each(response.data, function(index, usuario) {
-                $('#tabelaUsuarios').append('<tr><td>' + usuario.id + '</td><td>' + usuario.nome + '</td><td>' + usuario.telefone + '</td><td>' + usuario.email + '</td><td><button class="btn btn-sm btn-primary btn-editar" data-id="' + usuario.id + '">Editar</button> <button class="btn btn-sm btn-danger btn-excluir" data-id="' + usuario.id + '">Excluir</button></td></tr>');
+          $('#tabelaUsuarios').empty();
+
+          if (response.data.length === 0) {
+            // Se não houver nenhum registro, exibir a mensagem
+            $('#tabelaUsuarios').html('<tr><td colspan="5">Ainda não há contatos cadastrados</td></tr>');
+          } else {
+            // Se houver registros, preencher a tabela normalmente
+            $.each(response.data, function (index, usuario) {
+              $('#tabelaUsuarios').append('<tr><td>' + usuario.id + '</td><td>' + usuario.nome + '</td><td>' + usuario.telefone + '</td><td>' + usuario.email + '</td><td><button class="btn btn-sm btn-primary btn-editar" data-id="' + usuario.id + '">Editar</button> <button class="btn btn-sm btn-danger btn-excluir" data-id="' + usuario.id + '">Excluir</button></td></tr>');
             });
+          }
 
-            // Atualizar a exibição da página atual
-            $('#paginaAtual').text(((skip / take) + 1) + ' de ' + Math.ceil(response.total / take));
-            $('#totalRegistrado').text('Total Registrado: ' + totalRegistros);
+          // Atualizar a exibição da página atual
+          $('#paginaAtual').text(((skip / take) + 1) + ' de ' + Math.ceil(response.total / take));
+          $('#totalRegistrado').text('Total Registrado: ' + totalRegistros);
 
-            // Habilitar/desabilitar botão de próxima página com base no número total de registros
-            if ((skip + take) >= response.total) {
-                $('#nextPage').addClass('disabled');
-            } else {
-                $('#nextPage').removeClass('disabled');
-            }
+          // Habilitar/desabilitar botão de próxima página com base no número total de registros
+          if ((skip + take) >= response.total) {
+            $('#nextPage').addClass('disabled');
+          } else {
+            $('#nextPage').removeClass('disabled');
+          }
 
-            // Habilitar/desabilitar botão de página anterior com base no valor atual de skip
-            if (skip - take < 0) {
-                $('#previousPage').addClass('disabled');
-            } else {
-                $('#previousPage').removeClass('disabled');
-            }
+          // Habilitar/desabilitar botão de página anterior com base no valor atual de skip
+          if (skip - take < 0) {
+            $('#previousPage').addClass('disabled');
+          } else {
+            $('#previousPage').removeClass('disabled');
+          }
         },
-        error: function(xhr, status, error) {
-            console.error('Erro ao carregar registros:', error);
+        error: function (xhr, status, error) {
+          console.error('Erro ao carregar registros:', error);
         }
-    });
-}
+      });
+    }
 
     // Carregar registros quando a página é carregada
     carregarUsuarios();
 
     // Botão Anterior
-    $('#previousPage').click(function() {
-    if (skip - take >= 0) {
+    $('#previousPage').click(function () {
+      if (skip - take >= 0) {
         skip -= take;
         carregarUsuarios();
-    }
-});
+      }
+    });
 
-// Botão Próximo
-$('#nextPage').click(function() {
-    skip += take; // Aumenta o skip para carregar a próxima página
-    carregarUsuarios();
-});
+    // Botão Próximo
+    $('#nextPage').click(function () {
+      skip += take; // Aumenta o skip para carregar a próxima página
+      carregarUsuarios();
+    });
 
 
     function editarUsuario(id) {
-        $.ajax({
-            url: `${applicationUrl}/api/User/` + id,
-            type: 'GET',
-            success: function (usuario) {
-                $('#modalUsuario .modal-title').text('Editar Usuário');
-                $('#modalUsuario .modal-body').html('<form id="formEditarUsuario"><input type="hidden" id="usuarioId" value="' + usuario.id + '"><div class="form-group"><label for="nome">Nome:</label><input type="text" class="form-control" id="nome" value="' + usuario.nome + '" required></div><div class="form-group"><label for="telefone">Telefone:</label><input type="tel" class="form-control" id="telefone" value="' + usuario.telefone + '" required></div><div class="form-group"><label for="email">Email:</label><input type="email" class="form-control" id="email" value="' + usuario.email + '" required></div><button type="submit" class="btn btn-primary">Salvar</button></form>');
-                $('#modalUsuario').modal('show');
-            }
-        });
+  
+      
+      $.ajax({
+        url: `${applicationUrl}/api/User/` + id,
+        type: 'GET',
+        success: function (usuario) {
+          $('#modalUsuarioedicao .modal-title').text('Editar Usuário');
+          $('#modalUsuarioedicao .modal-body').html('<form id="formEditarUsuario"><input type="hidden" id="usuarioId" value="' + usuario.id + '"><div class="form-group"><label for="nome">Nome:</label><input type="text" class="form-control" id="nomeEdit" value="' + usuario.nome + '" required></div><div class="form-group"><label for="telefone">Telefone:</label><input type="tel" class="form-control" id="telefoneEdit" value="' + usuario.telefone + '" required></div><div class="form-group"><label for="email">Email:</label><input type="email" class="form-control" id="emailEdit" value="' + usuario.email + '" required></div><button type="submit" class="btn btn-primary">Salvar</button></form>');
+          $('#modalUsuarioedicao').modal('show');
+          
+
+        }
+      });
     }
 
     $(document).ready(function () {
-      $('#telefone').mask('(99) 9999-9999'); 
 
-//pesquisa
-debugger
-        $('.search-input').on('input', function() {
+      //pesquisa
+
+      $('.search-input').on('input', function () {
         var termo = $(this).val();
 
         if (termo.trim() !== '') {
-            // Se o termo de pesquisa não estiver vazio, enviar solicitação de pesquisa
-            $.ajax({
-              url: `${applicationUrl}/api/User/pesquisar`,
-                method: 'GET',
-                data: { termo: termo },
-                success: function(usuarios) {
-                    exibirResultadoPesquisa(usuarios);
-                },
-                error: function(error) {
-                    console.error('Erro na pesquisa:', error);
-                }
-            });
-        } else {
-            // Se o termo de pesquisa estiver vazio, carregar usuários normais
-            carregarUsuarios();
-        }
-    });
 
-// Função para exibir os resultados da pesquisa na tabela
-function exibirResultadoPesquisa(usuarios) {
-    var tabelaUsuarios = $('#tabelaUsuarios');
-    tabelaUsuarios.empty(); // Limpar a tabela antes de adicionar novos resultados
-
-    if (usuarios.length === 0) {
-        tabelaUsuarios.append('<tr><td colspan="5">Nenhum resultado encontrado</td></tr>');
-    } else {
-        $.each(usuarios, function(index, usuario) {
-            tabelaUsuarios.append('<tr><td>' + usuario.id + '</td><td>' + usuario.nome + '</td><td>' + usuario.telefone + '</td><td>' + usuario.email + '</td><td><button class="btn btn-sm btn-primary btn-editar" data-id="' + usuario.id + '">Editar</button> <button class="btn btn-sm btn-danger btn-excluir" data-id="' + usuario.id + '">Excluir</button></td></tr>');
-        });
-    }
-}
-
-
-
-        // Carregar os usuários quando a página é carregada
-        carregarUsuarios();
-
-     
-        // Abrir modal para editar usuário quando o botão de edição é clicado
-        $('body').on('click', '.btn-editar', function () {
-            var usuarioId = $(this).data('id');
-            editarUsuario(usuarioId);
-        });
-
-
-        // Processar formulário de edição de usuário
-        $('body').on('submit', '#formEditarUsuario', function (event) {
-            event.preventDefault();
-            var usuarioId = $('#usuarioId').val();
-            var usuario = {
-                id: usuarioId,
-                nome: $('#nome').val(),
-                telefone: $('#telefone').val(),
-                email: $('#email').val()
-            };
-            $.ajax({
-                url: `${applicationUrl}/api/User/${usuarioId}`,
-                type: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify(usuario),
-                success: function () {
-                    $('#modalUsuario').modal('hide');
-                    carregarUsuarios();
-
-                    $('#nome').val('');
-                $('#telefone').val('');
-                $('#email').val('');
-
-                }
-            });
-        });
-
-        // Processar formulário de cadastro de novo usuário
-        $('body').on('submit', '#formCadastroUsuario', function (event) {
-          debugger;
-            event.preventDefault();
-            var usuario = {
-                nome: $('#nome').val(),
-                telefone: $('#telefone').val(),
-                email: $('#email').val()
-            };
-            $.ajax({
-                url: `${applicationUrl}/api/User`,
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(usuario),
-                success: function () {
-                    $('#modalUsuario').modal('hide');
-                    carregarUsuarios();
-                    $('#nome').val('');
-                   $('#telefone').val('');
-                   $('#email').val('');
-                }
-            });
-        });
-
-        // Excluir usuário
-        $('body').on('click', '.btn-excluir', function () {
-            var usuarioId = $(this).data('id');
-            if (confirm('Tem certeza que deseja excluir este usuário?')) {
-                $.ajax({
-                    url: `${applicationUrl}/api/User/${usuarioId}`,
-                    type: 'DELETE',
-                    success: function () {
-                        carregarUsuarios();
-                    }
-                });
+          $.ajax({
+            url: `${applicationUrl}/api/User/pesquisar`,
+            method: 'GET',
+            data: { termo: termo },
+            success: function (usuarios) {
+              exibirResultadoPesquisa(usuarios);
+            },
+            error: function (error) {
+              console.error('Erro na pesquisa:', error);
             }
-        });
+          });
+        } else {
+
+          carregarUsuarios();
+        }
+      });
+
+      // Função para exibir os resultados da pesquisa na tabela
+      function exibirResultadoPesquisa(usuarios) {
+        var tabelaUsuarios = $('#tabelaUsuarios');
+        tabelaUsuarios.empty();
+        if (usuarios.length === 0) {
+          tabelaUsuarios.append('<tr><td colspan="5">Nenhum resultado encontrado</td></tr>');
+        } else {
+          $.each(usuarios, function (index, usuario) {
+            tabelaUsuarios.append('<tr><td>' + usuario.id + '</td><td>' + usuario.nome + '</td><td>' + usuario.telefone + '</td><td>' + usuario.email + '</td><td><button class="btn btn-sm btn-primary btn-editar" data-id="' + usuario.id + '">Editar</button> <button class="btn btn-sm btn-danger btn-excluir" data-id="' + usuario.id + '">Excluir</button></td></tr>');
+          });
+        }
+      }
+
+
+      carregarUsuarios();
+
+
+      // Abrir modal para editar usuário quando o botão de edição é clicado
+      $('body').on('click', '.btn-editar', function () {
+        var usuarioId = $(this).data('id');
+        editarUsuario(usuarioId);
 
         
-    });
-</script>
 
-  
+      
+      });
+      
+
+
+      // Processar formulário de edição de usuário
+      debugger
+      $('body').on('submit', '#formEditarUsuario', function (event) {
+        event.preventDefault();
+        var usuarioId = $('#usuarioId').val();
+        var usuario = {
+          id: usuarioId,
+          nome: $('#nomeEdit').val(),
+          telefone: $('#telefoneEdit').val(),
+          email: $('#emailEdit').val()
+        };
+        $.ajax({
+          url: `${applicationUrl}/api/User/${usuarioId}`,
+          type: 'PUT',
+          contentType: 'application/json',
+          data: JSON.stringify(usuario),
+          success: function () {
+            $('#modalUsuarioedicao').modal('hide');
+            
+            skip = 0; // Reiniciar skip para 0
+            
+
+            carregarUsuarios();
+            $('#nome').val('');
+            $('#telefone').val('');
+            $('#email').val('');
+            
+
+            mostrarAlerta('Usuário editado com sucesso!', 'success');
+            
+          }
+
+        });
+      });
+
+
+      // Processar formulário de cadastro de novo usuário
+      $('body').on('submit', '#formCadastroUsuario', function (event) {
+        debugger;
+        
+        event.preventDefault();
+        var usuario = {
+          nome: $('#nome').val(),
+          telefone: $('#telefone').val(),
+          email: $('#email').val()
+        };
+        $.ajax({
+          url: `${applicationUrl}/api/User`,
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(usuario),
+          success: function () {
+            $('#modalUsuario').modal('hide');
+            carregarUsuarios();
+
+            mostrarAlerta('Usuário cadastrado com sucesso!', 'success');
+            $('#nome').val('');
+            $('#telefone').val('');
+            $('#email').val('');
+            
+
+          }
+        });
+      });
+
+      // Excluir usuário
+      $('body').on('click', '.btn-excluir', function () {
+        var usuarioId = $(this).data('id');
+        if (confirm('Tem certeza que deseja excluir este usuário?')) {
+          $.ajax({
+            url: `${applicationUrl}/api/User/${usuarioId}`,
+            type: 'DELETE',
+            success: function () {
+              carregarUsuarios();
+              mostrarAlerta('Usuário excluído com sucesso!', 'success');
+              $('#nome').val('');
+              $('#telefone').val('');
+              $('#email').val('');
+
+
+
+            }
+          });
+        }
+      });
+
+
+    });
+  </script>
+
+
 </body>
+
 </html>
