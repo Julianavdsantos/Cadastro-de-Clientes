@@ -206,7 +206,7 @@
 
   <!-- Modal de Cadastro de Usuário -->
 
-  <div class="modal fade" id="modalUsuario" tabindex="-1"  role="dialog" aria-labelledby="modalUsuarioLabel"
+  <div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -248,41 +248,41 @@
 
 
 
-  <div class="modal fade" id="modalUsuarioedicao" tabindex="-1"  role="dialog" aria-labelledby="modalUsuarioLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalClienteLabel">Cadastrar Novo Cliente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="formCadastroUsuario">
-          <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" class="form-control nome" id="nome" required>
+  <div class="modal fade" id="modalUsuarioedicao" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalClienteLabel">Cadastrar Novo Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="formCadastroUsuario">
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input type="text" class="form-control nome" id="nome" required>
 
-          </div>
-          <div class="form-group">
-            <label for="telefone">Telefone:</label>
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
 
-            <input type="text" class="form-control item telefone" id="telefone">
+              <input type="text" class="form-control item telefone" id="telefone">
 
 
 
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control email" id="email" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control email" id="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
@@ -314,12 +314,20 @@
         timer: 2500
       });
     }
+    //validação de telefone
+    function validarTelefone(telefone) {
+  return telefone.replace(/\D/g, '').length >= 10; // Remove todos os caracteres não numéricos e verifica se restam pelo menos 10 dígitos
+}
+
+
 
 
     //pesquisar
 
     function carregarUsuarios() {
-      $('#telefone').mask('(99) 9999-9999');
+      $('#telefone').mask('(99) 99999-9999');
+      $('#telefoneEdit').mask('(99) 99999-9999');
+     
       $('#tabelaUsuarios').html('<tr><td colspan="5">Carregando...</td></tr>');
       $.ajax({
         url: `${applicationUrl}/api/User/skip/${skip}/take/${take}`,
@@ -382,16 +390,16 @@
 
 
     function editarUsuario(id) {
-  
-      
+
+
       $.ajax({
         url: `${applicationUrl}/api/User/` + id,
         type: 'GET',
         success: function (usuario) {
           $('#modalUsuarioedicao .modal-title').text('Editar Usuário');
-          $('#modalUsuarioedicao .modal-body').html('<form id="formEditarUsuario"><input type="hidden" id="usuarioId" value="' + usuario.id + '"><div class="form-group"><label for="nome">Nome:</label><input type="text" class="form-control" id="nomeEdit" value="' + usuario.nome + '" required></div><div class="form-group"><label for="telefone">Telefone:</label><input type="tel" class="form-control" id="telefoneEdit" value="' + usuario.telefone + '" required></div><div class="form-group"><label for="email">Email:</label><input type="email" class="form-control" id="emailEdit" value="' + usuario.email + '" required></div><button type="submit" class="btn btn-primary">Salvar</button></form>');
+          $('#modalUsuarioedicao .modal-body').html('<form id="formEditarUsuario"><input type="hidden" id="usuarioId" value="' + usuario.id + '"><div class="form-group"><label for="nome">Nome:</label><input type="text" class="form-control" id="nomeEdit" value="' + usuario.nome + '" required></div><div class="form-group"><label for="telefone">Telefone:</label><input type="text" class="form-control item" id="telefoneEdit" value="' + usuario.telefone + '" required></div><div class="form-group"><label for="email">Email:</label><input type="email" class="form-control" id="emailEdit" value="' + usuario.email + '" required></div><button type="submit" class="btn btn-primary">Salvar</button></form>');
           $('#modalUsuarioedicao').modal('show');
-          
+
 
         }
       });
@@ -445,17 +453,29 @@
         var usuarioId = $(this).data('id');
         editarUsuario(usuarioId);
 
-        
 
-      
+
+
       });
-      
+
 
 
       // Processar formulário de edição de usuário
       debugger
       $('body').on('submit', '#formEditarUsuario', function (event) {
         event.preventDefault();
+
+
+        var telefone = $('#telefoneEdit').val();
+
+// Validar o telefone
+if (!validarTelefone(telefone)) {
+  mostrarAlerta('Por favor, insira um número de telefone válido com pelo menos 10 dígitos.', 'error');
+  return;
+}
+
+
+
         var usuarioId = $('#usuarioId').val();
         var usuario = {
           id: usuarioId,
@@ -470,18 +490,18 @@
           data: JSON.stringify(usuario),
           success: function () {
             $('#modalUsuarioedicao').modal('hide');
-            
+
             skip = 0; // Reiniciar skip para 0
-            
+
 
             carregarUsuarios();
             $('#nome').val('');
             $('#telefone').val('');
             $('#email').val('');
-            
+
 
             mostrarAlerta('Usuário editado com sucesso!', 'success');
-            
+
           }
 
         });
@@ -491,8 +511,19 @@
       // Processar formulário de cadastro de novo usuário
       $('body').on('submit', '#formCadastroUsuario', function (event) {
         debugger;
-        
         event.preventDefault();
+        var telefone = $('#telefone').val();
+
+// Validar o telefone
+if (!validarTelefone(telefone)) {
+  mostrarAlerta('Por favor, insira um número de telefone válido com pelo menos 10 dígitos.', 'error');
+  return;
+}
+
+
+
+
+
         var usuario = {
           nome: $('#nome').val(),
           telefone: $('#telefone').val(),
@@ -511,7 +542,7 @@
             $('#nome').val('');
             $('#telefone').val('');
             $('#email').val('');
-            
+
 
           }
         });
