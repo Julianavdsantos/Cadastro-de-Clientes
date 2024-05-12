@@ -31,9 +31,6 @@ namespace Teste_Emccamp.Controllers
 
             return await _dbContext.Usuarios.ToListAsync();
 
-
-
-
         }
 
         //paginacao
@@ -71,14 +68,6 @@ namespace Teste_Emccamp.Controllers
                 return StatusCode(500, "Ocorreu um erro ao processar a solicitação.");
             }
         }
-
-
-
-
-
-
-
-
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)
@@ -120,10 +109,6 @@ namespace Teste_Emccamp.Controllers
 
             return usuarios;
         }
-
-
-
-
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(int id, [FromBody] Usuario usuario)
